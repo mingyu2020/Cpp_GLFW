@@ -1,0 +1,55 @@
+#include <GLFW/glfw3.h>
+#include <GL/gl.h>
+
+GLfloat MyVertices[8][3] = { {-0.25,-0.25,0.25}, {-0.25,0.25,0.25}, {0.25,0.25,0.25},{0.25,-0.25,0.25}, {-0.25,-0.25,-0.25}, {-0.25,0.25,-0.25},{0.25,0.25,-0.25}, {0.25,-0.25,-0.25} };
+GLfloat MyColors[8][3] = { {0.2,0.2,0.2}, {1.0,0.0,0.0}, {1.0, 1.0, 0.0}, {0.0,1.0,0.0},{0.0,0.0,1.0}, {1.0,0.0,1.0}, {1.0,1.0,1.0}, {0.0,1.0,1.0} };
+GLubyte MyVertexList[24] = { 0,3,2,1, 3,7,6,2, 0,4,7,3, 1,2,6,5, 4,5,6,7, 0,1,5,4 };
+
+GLfloat rotationAngle = 0.0f;
+
+void MyDisplay(GLFWwindow* window) {
+    glClear(GL_COLOR_BUFFER_BIT);
+    glFrontFace(GL_CCW);
+    glEnable(GL_CULL_FACE);
+    glEnableClientState(GL_COLOR_ARRAY);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glColorPointer(3, GL_FLOAT, 0, MyColors);
+    glVertexPointer(3, GL_FLOAT, 0, MyVertices);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glRotatef(rotationAngle, 1.0, 1.0, 1.0); // 회전을 적용합니다.
+    for (GLint i = 0; i < 6; i++) {
+        glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_BYTE, &MyVertexList[4 * i]);
+    }
+    glfwSwapBuffers(window);
+}
+
+void Update() {
+    rotationAngle += 0.05f; // 회전 각도를 업데이트합니다.
+    if (rotationAngle >= 360.0f) {
+        rotationAngle -= 360.0f;
+    }
+}
+
+int main() {
+    if (!glfwInit()) return -1;
+
+    GLFWwindow* window = glfwCreateWindow(500, 500, "3dCUBE", NULL, NULL);
+    if (!window) {
+        glfwTerminate();
+        return -1;
+    }
+
+    glfwMakeContextCurrent(window);
+
+    glClearColor(0.0, 0.0, 0.0, 1.0);
+
+    while (!glfwWindowShouldClose(window)) {
+        Update(); // 회전 각도를 업데이트합니다.
+        MyDisplay(window);
+        glfwPollEvents();
+    }
+
+    glfwTerminate();
+    return 0;
+}
