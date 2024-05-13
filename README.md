@@ -5,7 +5,7 @@
 - 64-bit Windows binaries 클릭하여 다운로드 후 압축해제
 
 2. 설치한 GLFW 파일 옮기기
-- 새로운 프로젝트 생성 : C++ / 콘솔앱
+- Visual Studio 2022 새로운 프로젝트 생성 : C++ / 콘솔앱
 - 솔루션 빌드 실행 및 완료 후, 솔루션 폴더를 열어 'include', 'lib' 이름의 폴더를 생성
 - 1 에서 받았던 glfw-3.4.bin.WIN64 ▶ include ▶ GLFW 폴더를 솔루션 폴더의 'include'폴더에 복사
 - glfw-3.4.bin.WIN64 ▶ lib-vc2022 폴더 안의 'glfw3.lib' 파일을 솔루션 폴더의 'lib' 폴더에 복사
