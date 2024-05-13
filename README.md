@@ -26,3 +26,9 @@
 
 
 ![3dCube](https://github.com/mingyu2020/Cpp_GLFW/assets/127829026/09e9d50c-5824-443d-b002-cca88b1c9463)
+
+
+![3dCube_2](https://github.com/mingyu2020/Cpp_GLFW/assets/127829026/e4ec8799-aa54-426c-aced-fab7d3fda8fb)
+
+
+
